@@ -30,8 +30,7 @@ app.use(session({
 	secret: 'any string'
 }));
 
-// const userService = require('./services/user.service.server'); //(app);
-// userService(app);
+require('./services/user.service.server')(app);
 
 // require('./services/section.service.server')(app);
 // require('./services/enrollment.service.server')(app);
