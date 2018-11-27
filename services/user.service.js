@@ -1,6 +1,6 @@
-const userModel = require('../models/user/user.model.server');
+const userModel = require('../models/user/user.model');
 
-modulee.exports = app => {
+module.exports = app => {
 
     createUser = (req, res) => {
         const newUser = req.body;

@@ -8,7 +8,7 @@ const WEBSITE_URL = "http://localhost:3000";
 
 // Connect to Mongo
 const mongoose = require('mongoose');
-mongoose.connect('mongodb:/admin:admin@ds151153.mlab.com:51153/password_manager');
+mongoose.connect('mongodb://admin:admin@ds151153.mlab.com:51153/password_manager');
 
 //Body Parser
 app.use(bodyParser.json());
@@ -30,7 +30,7 @@ app.use(session({
 	secret: 'any string'
 }));
 
-require('./services/user.service.server')(app);
+require('./services/user.service')(app);
 
 // require('./services/section.service.server')(app);
 // require('./services/enrollment.service.server')(app);
