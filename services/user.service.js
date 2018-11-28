@@ -4,11 +4,11 @@ module.exports = app => {
 
     currentUser = (req, res) => {
         const cur = req.session['currentUser'];
-        if (currentUser) {
-            userModel.findUserByUsername(cur._username)
+        if (cur) {
+            userModel.findUserByUsername(cur.username)
                 .then(user => res.send(user))
         } else {
-            res.sendStatus(403)
+            res.sendStatus(422)
         }
     }
 
