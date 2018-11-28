@@ -8,7 +8,7 @@ const WEBSITE_URL = "http://localhost:3000";
 
 // Connect to Mongo
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://admin:admin@ds151153.mlab.com:51153/password_manager');
+mongoose.connect('mongodb://admin:admin1234@ds151153.mlab.com:51153/password_manager');
 
 //Body Parser
 app.use(bodyParser.json());
@@ -19,7 +19,7 @@ app.use(function(req, res, next) {
 	res.header("Access-Control-Allow-Origin", WEBSITE_URL);
 	res.header("Access-Control-Allow-Credentials", "true");
 	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-	res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+	res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE"); //, OPTIONS");
 	next();
 });
 
@@ -38,4 +38,4 @@ require('./services/user.service')(app);
 // require('./services/question.service.server')(app);
 // require('./services/submission.service.server')(app);
 
-app.listen(process.env.PORT || 3000)
+app.listen(process.env.PORT || 4000)

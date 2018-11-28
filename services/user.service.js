@@ -2,6 +2,16 @@ const userModel = require('../models/user/user.model');
 
 module.exports = app => {
 
+    currentUser = (req, res) => {
+        const cur = req.session['currentUser'];
+        if (currentUser) {
+            userModel.findUserByUsername(cur._username)
+                .then(user => res.send(user))
+        } else {
+            res.sendStatus(403)
+        }
+    }
+
     createUser = (req, res) => {
         const newUser = req.body;
 
@@ -17,7 +27,7 @@ module.exports = app => {
         const password = req.body.password
 
         userModel.findUserByCredentials(username, password)
-            .then( user => {
+            .then(user => {
                 if (user) {
                     req.session['currentUser'] = user;
                     res.send(req.session['currentUser']);
@@ -31,13 +41,34 @@ module.exports = app => {
         const username = req.body.username
 
         userModel.findUserByUsername(username)
-            .then( user => {
-                res.json(user)
+            .then(user => {
+                if (user) {
+                    res.sendStatus(422);
+                } else {
+                    res.json(user)
+                }
+            })
+    }
+
+    profile = (req, res) => {
+        res.send(req.session['currentUser'])
+    }
+
+    updateUser = (req, res) => {
+        const user = req.session['currentUser']
+        const id = user._id
+
+        userModel.updateUser(id, req.body)
+            .then(user => {
+                res.json(user);
             })
     }
 
     // Allow server to accept request / location / method
     app.post('/api/register', createUser);
-    app.post('/api/user/credentials', findUserByCredentials);
+    app.post('/api/login', findUserByCredentials);
     app.post('/api/user/username', findUserByUsername)
+    app.get('/api/currentUser', currentUser)
+    app.get('/api/profile', profile)
+    app.put('/api/user/update', updateUser);
 }

@@ -15,8 +15,13 @@ findUserByCredentials = (username, password) => {
     return userModel.findOne({username: username, password: password})
 }
 
+updateUser = (userId, newUser) => {
+    return userModel.update({_id: userId}, {$set: newUser})
+}
+
 module.exports = {
     createUser,
     findUserByUsername,
-    findUserByCredentials
+    findUserByCredentials,
+    updateUser
 };
