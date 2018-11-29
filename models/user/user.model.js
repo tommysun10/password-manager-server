@@ -16,7 +16,7 @@ findUserByCredentials = (username, password) => {
 }
 
 updateUser = (userId, newUser) => {
-    return userModel.update({_id: userId}, {$set: newUser})
+    return userModel.findOneAndUpdate({_id: userId}, {$set: newUser})
 }
 
 module.exports = {
