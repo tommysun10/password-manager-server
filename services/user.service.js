@@ -50,6 +50,12 @@ module.exports = app => {
             })
     }
 
+    logout = (req, res) => {
+        req.session['currentUser'] = null;
+        req.session = null;
+        res.send(req.session)
+      }
+
     profile = (req, res) => {
         res.send(req.session['currentUser'])
     }
@@ -67,8 +73,9 @@ module.exports = app => {
     // Allow server to accept request / location / method
     app.post('/api/register', createUser);
     app.post('/api/login', findUserByCredentials);
-    app.post('/api/user/username', findUserByUsername)
-    app.get('/api/currentUser', currentUser)
-    app.get('/api/profile', profile)
+    app.post('/api/user/username', findUserByUsername);
+    app.post('/api/logout', logout);
+    app.get('/api/currentUser', currentUser);
+    app.get('/api/profile', profile);
     app.put('/api/user/update', updateUser);
 }
