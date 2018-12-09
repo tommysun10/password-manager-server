@@ -5,7 +5,7 @@ var bodyParser = require('body-parser');
 
 //Website Link
 //const WEBSITE_URL = "http://localhost:3000";
-const WEBSITE_URL = "https://password-manager-tommy.herokuapp.com/";
+const WEBSITE_URL = "https://password-manager-tommy.herokuapp.com";
 
 
 // Connect to Mongo
