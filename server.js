@@ -4,7 +4,9 @@ var session = require('express-session')
 var bodyParser = require('body-parser');
 
 //Website Link
-const WEBSITE_URL = "http://localhost:3000";
+//const WEBSITE_URL = "http://localhost:3000";
+const WEBSITE_URL = "https://password-manager-tommy.herokuapp.com/";
+
 
 // Connect to Mongo
 const mongoose = require('mongoose');
@@ -38,4 +40,4 @@ require('./services/user.service')(app);
 // require('./services/question.service.server')(app);
 // require('./services/submission.service.server')(app);
 
-app.listen(process.env.PORT || 4000)
+app.listen(process.env.PORT || 3000)
