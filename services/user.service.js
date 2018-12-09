@@ -2,6 +2,7 @@ const userModel = require('../models/user/user.model');
 
 module.exports = app => {
 
+    // Gets the current user
     currentUser = (req, res) => {
         const cur = req.session['currentUser'];
         if (cur) {
@@ -12,6 +13,7 @@ module.exports = app => {
         }
     }
 
+    // Creates a new user
     createUser = (req, res) => {
         const newUser = req.body;
 
@@ -22,6 +24,7 @@ module.exports = app => {
             })
     }
 
+    // Used to log in a user
     findUserByCredentials = (req, res) => {
         const username = req.body.username
         const password = req.body.password
@@ -37,6 +40,7 @@ module.exports = app => {
             })
     }
 
+    // Find a user based on the username
     findUserByUsername = (req, res) => {
         const username = req.body.username
 
@@ -50,16 +54,18 @@ module.exports = app => {
             })
     }
 
+    // Logs out a user
     logout = (req, res) => {
         req.session['currentUser'] = null;
-        req.session = null;
-        res.send(req.session)
+        res.send(null);
       }
 
+    // Gets the current User
     profile = (req, res) => {
         res.send(req.session['currentUser'])
     }
 
+    // Updates the user
     updateUser = (req, res) => {
         const user = req.session['currentUser']
         const id = user._id
